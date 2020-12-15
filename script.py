@@ -7,9 +7,6 @@ def getTime():
     current_time = now.strftime("%H:%M:%S")
     return current_time
 
-def playAlarmSound():
-
-
 def main():
     print("Good morning and welcome to google meet launcher!")
     print(getTime())
