@@ -1,21 +1,34 @@
-import time
+import time as t
 import webbrowser
+import re
 
 def getTime():
     from datetime import datetime
     now = datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    return current_time
+    current_time = now.strftime("%H:%M:%S") 
+    stringWithoutColon = ''
+    for char in current_time:
+        if (current_time.index(char) !=2 and current_time.index(char) !=5):
+            stringWithoutColon += char
+    return int(stringWithoutColon)
+
+
+def openFile():
+    f = open('file.txt','r')
+    links = []
+    for line in f:
+        line = line.rstrip()
+        x = re.findall('.*Period\s*\d:\s*(\S+).*', line)
+        if (len(x)>0):
+            links.append(x)
+    return links
 
 def main():
+    
     print("Good morning and welcome to google meet launcher!")
     print("The current time is: {0}".format(getTime()))
 
-    meet1 = input("Please enter your first class meet link (make sure its the entire link): ")
-    meet2 = input("Please enter your second class meet link (make sure its the entire link): ")
-    meet3 = input("Please enter your third class meet link (make sure its the entire link): ")
-    meet4 = input("Please enter your fourth class meet link (make sure its the entire link): ")
-    meet5 = input("Please enter your fifth class meet link (make sure its the entire link): ")
+    links = openFile()
 
     loop = True
     schedule = input("Is today a half day or full day? (Type \'h\' or \'f\' respectively): ")
@@ -23,35 +36,38 @@ def main():
         print("The program is now running and will open your google meet links at the right class schedule. Please do not close the program.")
         while(loop):
             time = getTime()
-            if (time == "07:45:00"):
-                webbrowser.open(meet1, new = 2)
-            if (time == "08:52:00"):
-                webbrowser.open(meet2, new = 2)
-            if (time == "09:59:00"):
-                webbrowser.open(meet3, new = 2)
-            if (time == "12:07:00"):
-                webbrowser.open(meet4, new = 2)
-            if (time == "13:14:00"):
-                webbrowser.open(meet5, new = 2)
-            if (time >= "13:15:00"):  
+            if (time > 74400 and time <74500):
+                webbrowser.open(links[0][0], new = 2)
+            if (time > 85100 and time < 85200):
+                webbrowser.open(links[1][0], new = 2)
+            if (time > 95800 and time <95900):
+                webbrowser.open(links[2][0], new = 2)
+            if (time > 120600 and time <120700):
+                webbrowser.open(links[3][0], new = 2)
+            if (time > 131400 and time <131500):
+                webbrowser.open(links[4][0], new = 2)
+            if (time >= 180000):  
                 loop = False
+            t.sleep(60)
     elif (schedule == 'h' or schedule =='H'):
         print("The program is now running and will open your google meet links at the right class schedule. Please do not close the program.")
         while(loop):
             time = getTime()
             if (time == "08:00:00"):
-                webbrowser.open(meet1, new = 2)
+                webbrowser.open(links[0][0], new = 2)
             if (time == "08:52:00"):
-                webbrowser.open(meet2, new = 2)
+                webbrowser.open(links[0][0], new = 2)
             if (time == "09:42:00"):
-                webbrowser.open(meet3, new = 2)
+                webbrowser.open(links[0][0], new = 2)
             if (time == "10:50:00"):
-                webbrowser.open(meet4, new = 2)
+                webbrowser.open(links[0][0], new = 2)
             if (time == "11:40:00"):
-                webbrowser.open(meet5, new = 2)
+                webbrowser.open(links[0][0], new = 2)
             if (time >= "11:41:00"):  
                 loop = False   
+            time.sleep(60)
     else:
         print("EROR: You have entered an invalid response to the type of day schedule!!!")
     print("You are now past your last period class or you have entered an invalid response. The program will now end. Have a good day!")
+
 main()
