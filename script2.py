@@ -1,4 +1,4 @@
-#checks non-stop
+#waits between periods
 
 import time as t
 import webbrowser
@@ -40,17 +40,21 @@ def main():
             time = getTime()
             if (time > 74400 and time <74500):
                 webbrowser.open(links[0][0], new = 2)
-            if (time > 85100 and time < 85200):
-                webbrowser.open(links[1][0], new = 2)
-            if (time > 95800 and time <95900):
-                webbrowser.open(alinks[2][0], new = 2)
-            if (time > 120600 and time <120700):
-                webbrowser.open(links[3][0], new = 2)
-            if (time > 131400 and time <131500):
-                webbrowser.open(links[4][0], new = 2)
-            if (time >= 180000):  
-                loop = False
             t.sleep(60)
+            loop = False
+        
+        t.sleep(3900)
+        webbrowser.open(links[1][0], new = 2)
+        t.sleep(3900)
+        webbrowser.open(links[2][0], new = 2)
+        t.sleep(3900)
+        webbrowser.open(links[3][0], new = 2)
+        t.sleep(3900)
+        webbrowser.open(links[4][0], new = 2)
+
+
+         
+            
     elif (schedule == 'h' or schedule =='H'):
         print("The program is now running and will open your google meet links at the right class schedule. Please do not close the program.")
         while(loop):
@@ -58,13 +62,13 @@ def main():
             if (time == "08:00:00"):
                 webbrowser.open(links[0][0], new = 2)
             if (time == "08:52:00"):
-                webbrowser.open(links[0][0], new = 2)
+                webbrowser.open(links[1][0], new = 2)
             if (time == "09:42:00"):
-                webbrowser.open(links[0][0], new = 2)
+                webbrowser.open(links[2][0], new = 2)
             if (time == "10:50:00"):
-                webbrowser.open(links[0][0], new = 2)
+                webbrowser.open(links[3][0], new = 2)
             if (time == "11:40:00"):
-                webbrowser.open(links[0][0], new = 2)
+                webbrowser.open(links[4][0], new = 2)
             if (time >= "11:41:00"):  
                 loop = False   
             time.sleep(60)
