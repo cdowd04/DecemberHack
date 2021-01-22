@@ -43,13 +43,13 @@ def main():
             t.sleep(60)
             loop = False
         
-        t.sleep(3900)
+        t.sleep(4020)
         webbrowser.open(links[1][0], new = 2)
-        t.sleep(3900)
+        t.sleep(4020)
         webbrowser.open(links[2][0], new = 2)
-        t.sleep(3900)
+        t.sleep(7620)
         webbrowser.open(links[3][0], new = 2)
-        t.sleep(3900)
+        t.sleep(4020)
         webbrowser.open(links[4][0], new = 2)
 
 
